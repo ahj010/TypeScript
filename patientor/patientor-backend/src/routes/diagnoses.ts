@@ -9,4 +9,9 @@ diagnosesRouter.get('/', (_req, res) => {
     res.send(diagnoses);
 });
 
+// diagnosesRouter.get('/:id' , (req, res) => {
+//   const patient = diagnoseService.getSpecficDiagnoses(req.params.id);
+//    res.json(patient);
+// });
+
 export default diagnosesRouter;

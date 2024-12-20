@@ -1,18 +1,39 @@
 import patientData from '../../data/patients';
-import { Gender, Patient,  PatientDisplay, NewPatientEntry, AddPatientOptions } from '../types';
+import { Patient, NewPatientEntry, AddPatientOptions } from '../types';
 import { v4 as uuidv4 } from 'uuid';
 
-
-const getPatients = (): PatientDisplay[] => {
-    return patientData.map(({ ssn: _ssn, gender, ...rest }) => ({
-        ...rest,
-        gender: gender as Gender,
+const getPatients = (): Patient[] => {
+    return patientData.map((patient) => ({
+      id: patient.id,
+      name: patient.name,
+      dateOfBirth: patient.dateOfBirth,
+      ssn: patient.ssn,
+      gender: patient.gender ,
+      occupation: patient.occupation,
+      entries: patient.entries,
     }));
-};
+  };
+
+  const getSpecficPatient = (_id: string): Patient => {
+    const specificPatient = patientData.find((patient) => patient.id === _id);
+    if (!specificPatient) {
+      throw new Error(`Patient with id ${_id} not found`);
+    }
+    return {
+      id: specificPatient.id,
+      name: specificPatient.name,
+      dateOfBirth: specificPatient.dateOfBirth,
+      ssn: specificPatient.ssn,
+      gender: specificPatient.gender,
+      occupation: specificPatient.occupation,
+      entries: specificPatient.entries,
+    };
+  };
 
 const addPatients = (newPatientData: AddPatientOptions): NewPatientEntry => {
     const newPatient: Patient = {
         id: uuidv4(),
+        entries: [],
         ...newPatientData,
     };
     patientData.push(newPatient);
@@ -21,4 +42,4 @@ const addPatients = (newPatientData: AddPatientOptions): NewPatientEntry => {
     return newPatient;
 };
 
-export default { getPatients, addPatients };
+export default { getPatients, addPatients, getSpecficPatient };

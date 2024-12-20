@@ -14,6 +14,10 @@ PatientsRouter.get('/' , (_req, res) => {
      res.json(patients);
 });
 
+PatientsRouter.get('/:id' , (req, res) => {
+  const patient = patientService.getSpecficPatient(req.params.id);
+   res.json(patient);
+});
 
 const newEntryParser = (req: Request, _res: Response, next: NextFunction) => {
   try {
