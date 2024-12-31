@@ -49,7 +49,7 @@ const PatientListPage = ({ patients, setPatients } : Props ) => {
   };
 
   return (
-    <div className="App">
+<div className="App">
       <Box>
         <Typography align="center" variant="h6">
           Patient list

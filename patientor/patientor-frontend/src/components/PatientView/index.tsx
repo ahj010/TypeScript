@@ -47,7 +47,7 @@ const PatientView = () => {
 
 
     return (
-        <>
+<>
         <Box>
         <Typography variant="h3">{patient.name} {genderIcon}</Typography>
         </Box>
@@ -67,7 +67,6 @@ const PatientView = () => {
           <Box>
 
             </Box>
-
 
         </>
     );
